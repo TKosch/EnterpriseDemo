@@ -15,11 +15,26 @@
 	<script src="jquery-1.11.2.min.js"></script>
 	<script>
 		$(document).ready(function () {
-			$("#sampleData").click(function () {
+			function performAjax(url) {
 				$("#result").html('<div class="basic" style="background-color: yellow;">loading ...</div>');
-				$.get("sampleData.jsp", function(data) {
-					$("#result").html(data);
+				$.ajax({
+					url: url,
+					success: function(data) {
+						$("#result").html(data);
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+						$("#result").html('<div class="basic" style="background-color: red;">' + textStatus + '</div>');
+					},
+					timeout: 1500
 				});
+			}
+
+			$("#version").click(function () {
+				performAjax("version.jsp");
+			});
+
+			$("#sampleData").click(function () {
+				performAjax("sampleData.jsp");
 			});
 		});
 	</script>
@@ -28,7 +43,8 @@
 	<div style="text-align: center;">
 		<h2>Hello. This is an Enterprise Demo!</h2>
 		<form>
-			<button id="sampleData" onClick="return false;">Get list of all employees of the DB2 sample table</button>
+			<button id="sampleData" onClick="return false;">Get Employees</button>
+			<button id="version" onClick="return false;">Get Version</button>
 		</form>
 	</div>
 	<br />
