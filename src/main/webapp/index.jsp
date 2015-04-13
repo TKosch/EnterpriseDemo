@@ -36,6 +36,12 @@
 			$("#sampleData").click(function () {
 				performAjax("sampleData.jsp");
 			});
+
+			$("#reset").click(function () {
+				$("#result").html('<div class="basic" style="background-color: lightgray;">no result</div>');
+			});
+
+			$("#reset").trigger("click");
 		});
 	</script>
 </head>
@@ -45,11 +51,12 @@
 		<form>
 			<button id="sampleData" onClick="return false;">Get Employees</button>
 			<button id="version" onClick="return false;">Get Version</button>
+			<button id="reset" onClick="return false;">Reset</button>
 		</form>
 	</div>
 	<br />
 	<div id="result" style="width: 100%;">
-		<div class="basic" style="background-color: lightgray;">no result</div>
+		<div class="basic" style="background-color: red;">no javascript</div>
 	</div>
 </body>
 </html>
